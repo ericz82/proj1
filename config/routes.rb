@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   patch '/damage', to: 'pokemons#damage'
   get 'pokemons/new', to: 'pokemons#new'
   post 'pokemons/create', to: 'pokemons#create'
+  patch '/heal', to: 'pokemons#heal'
 end
