@@ -16,6 +16,10 @@ class PokemonsController < ApplicationController
     #   @poke.save
     # end
     @poke.save
+    puts params
+    @my_poke = Pokemon.find(params[:poke_id])
+    @my_poke.level = @my_poke.level + 1
+    @my_poke.save
     redirect_to :back
   end
 

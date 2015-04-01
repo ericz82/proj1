@@ -1,13 +1,17 @@
 <h3>Trainer</h3>
 <p>Name: <%= @trainer.name if @trainer.name %></p>
 <p>Email: <%= @trainer.email if @trainer.email %></p>
-<h4>Pokemons:</h4>
+<h4>Pokémons:</h4>
 <% Pokemon.all.each do |p| %>
   <% if p.trainer == @trainer && (@trainer == current_trainer || p.health > 0) %>
     <p>Name: <%= p.name %></p>
     <p>Level: <%= p.level %></p>
     <p>Health: <%= p.health %></p>
-    <%= button_to "Damage!", damage_path(id: p), :class => "button medium", :method => :patch %>
+    <h5><b>Select one of your Pokémon for battle:</b></h5>
+    <%= form_tag(damage_path(id: p), method: 'patch') do %>
+      <%= select_tag(:poke_id, options_for_select(@pokemon)) %>
+      <%= submit_tag "Damage!", name: nil, class: 'button medium' %>
+    <% end %> 
     <% if @trainer == current_trainer %>
       <%= button_to "Heal!", heal_path(id: p), :class => "button medium", :method => :patch %>
     <% end %>
